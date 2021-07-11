@@ -27,6 +27,8 @@
   "devDependencies": {
     "@babel/cli": "^7.10.1",
     "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-react": "^7.13.13",
     "@testing-library/react": "^10.0.4",
     "@testing-library/react-hooks": "^2.0.1",
     "@types/jest": "^24.9.1",
@@ -40,7 +42,7 @@
     "babel-plugin-import": "^1.12.0",
     "babel-plugin-transform-async-to-promises": "^0.8.15",
     "del": "^5.1.0",
-    "dumi": "^1.1.7",
+    "dumi": "^1.1.18",
     "enzyme": "^3.10.0",
     "eslint": "^7.2.0",
     "eslint-plugin-react-hooks": "^4.0.8",

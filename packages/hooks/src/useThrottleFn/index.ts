@@ -1,14 +1,14 @@
-import throttle from 'lodash.throttle';
-import { useRef } from 'react';
+import throttle from 'lodash/throttle';
 import useCreation from '../useCreation';
+import useLatest from '../useLatest';
 import { ThrottleOptions } from '../useThrottle/throttleOptions';
 import useUnmount from '../useUnmount';
+import { devCheckDecorator } from '../utils/check';
 
 type Fn = (...args: any) => any;
 
 function useThrottleFn<T extends Fn>(fn: T, options?: ThrottleOptions) {
-  const fnRef = useRef<T>(fn);
-  fnRef.current = fn;
+  const fnRef = useLatest(fn);
 
   const wait = options?.wait ?? 1000;
 
@@ -29,10 +29,10 @@ function useThrottleFn<T extends Fn>(fn: T, options?: ThrottleOptions) {
   });
 
   return {
-    run: (throttled as unknown) as T,
+    run: throttled as unknown as T,
     cancel: throttled.cancel,
     flush: throttled.flush,
   };
 }
 
-export default useThrottleFn;
+export default devCheckDecorator(useThrottleFn);

@@ -42,8 +42,8 @@ const {
 | 参数     | 说明                       | 类型      | 默认值  |
 |----------|----------------------------|-----------|---------|
 | wait     | 超时时间，单位为毫秒       | `number`  | `1000`  |
-| leading  | 是否在上升沿触发副作用函数 | `boolean` | `false` |
-| trailing | 是否在下降沿触发副作用函数 | `boolean` | `true`  |
+| leading  | 是否在延迟开始前调用函数 | `boolean` | `false` |
+| trailing | 是否在延迟开始后调用函数 | `boolean` | `true`  |
 
 ### Result
 
@@ -52,3 +52,4 @@ const {
 | run    | 触发执行 fn，函数参数将会传递给 fn | `(...args: any[]) => any` |
 | cancel | 取消当前防抖                       | `() => void` |
 | flush  | 当前防抖立即调用                   | `() => void` |
+

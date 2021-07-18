@@ -1,14 +1,14 @@
-import debounce from 'lodash.debounce';
-import { useRef } from 'react';
+import debounce from 'lodash/debounce';
 import useCreation from '../useCreation';
 import { DebounceOptions } from '../useDebounce/debounceOptions';
+import useLatest from '../useLatest';
 import useUnmount from '../useUnmount';
+import { devCheckDecorator } from '../utils/check';
 
 type Fn = (...args: any) => any;
 
 function useDebounceFn<T extends Fn>(fn: T, options?: DebounceOptions) {
-  const fnRef = useRef<T>(fn);
-  fnRef.current = fn;
+  const fnRef = useLatest(fn);
 
   const wait = options?.wait ?? 1000;
 
@@ -29,10 +29,10 @@ function useDebounceFn<T extends Fn>(fn: T, options?: DebounceOptions) {
   });
 
   return {
-    run: (debounced as unknown) as T,
+    run: debounced as unknown as T,
     cancel: debounced.cancel,
     flush: debounced.flush,
   };
 }
 
-export default useDebounceFn;
+export default devCheckDecorator(useDebounceFn);
